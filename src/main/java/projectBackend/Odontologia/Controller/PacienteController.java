@@ -34,7 +34,7 @@ public class PacienteController {
         return ResponseEntity.ok(pacienteService.updatePaciente(paciente));
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Paciente> getPacientePorId(@PathVariable("id") Long id) {
         Optional<Paciente> paciente = pacienteService.getPacienteById(id);
         if (paciente.isEmpty()) {

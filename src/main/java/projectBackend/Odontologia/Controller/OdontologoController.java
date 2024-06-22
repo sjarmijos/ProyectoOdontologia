@@ -10,18 +10,18 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/odontologos")
+@RequestMapping("/odontologo")
 public class OdontologoController {
     @Autowired
     private OdontologoService odontologoService;
 
     @PostMapping("/createOdontologo")
-    public ResponseEntity<Odontologo> createOdontologo(Odontologo odontologo) {
+    public ResponseEntity<Odontologo> createOdontologo(@RequestBody Odontologo odontologo) {
         return ResponseEntity.ok(odontologoService.saveOdontologo(odontologo));
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<Odontologo> buscarOdontologo(Long id) {
+    public ResponseEntity<Odontologo> buscarOdontologo(@PathVariable("id") Long id) {
         Optional<Odontologo> odontologo = odontologoService.getOdontologoById(id);
         if (odontologo.isEmpty()) {
             return ResponseEntity.notFound().build();
@@ -35,12 +35,12 @@ public class OdontologoController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteOdontologo(Long id) {
+    public void deleteOdontologo(@PathVariable("id") Long id) {
         odontologoService.deleteOdontologo(id);
     }
 
     @PutMapping
-    public ResponseEntity<Odontologo> updateOdontologo(Odontologo odontologo) {
+    public ResponseEntity<Odontologo> updateOdontologo(@RequestBody Odontologo odontologo) {
         Optional<Odontologo> odontologo1 = odontologoService.getOdontologoById(odontologo.getId());
         if (odontologo1.isEmpty()) {
             return ResponseEntity.notFound().build();
