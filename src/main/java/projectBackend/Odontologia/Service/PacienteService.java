@@ -8,10 +8,10 @@ import java.util.Optional;
 
 public interface PacienteService {
     Paciente savePaciente(Paciente paciente);
-    void deletePaciente(Integer id);
+    void deletePaciente(Long id);
 
     Optional<Paciente> getPacienteByEmail(String email);
-    Optional<Paciente> getPacienteById(Integer id);
+    Optional<Paciente> getPacienteById(Long id);
 
     Paciente updatePaciente(Paciente paciente);
     List<Paciente> getPacientes();

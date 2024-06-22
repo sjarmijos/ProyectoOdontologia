@@ -19,15 +19,15 @@ public class PacienteServiceImpl implements PacienteService {
         return pacienteRepository.save(paciente);
     }
 
-    public void deletePaciente(Integer id) {
+    public void deletePaciente(Long id) {
         pacienteRepository.deleteById(id);
     }
 
-    public Paciente getPaciente(Integer id) {
+    public Paciente getPaciente(Long id) {
         return pacienteRepository.findById(id).orElseThrow(() -> new RuntimeException("Paciente no encontrado"));
     }
 
-    public Optional<Paciente> getPacienteById(Integer id) {
+    public Optional<Paciente> getPacienteById(Long id) {
         return pacienteRepository.findById(id);
     }
 

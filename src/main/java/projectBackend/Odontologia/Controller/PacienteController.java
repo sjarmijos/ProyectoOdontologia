@@ -1,6 +1,7 @@
 package projectBackend.Odontologia.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import projectBackend.Odontologia.Entity.Paciente;
 import projectBackend.Odontologia.Service.PacienteService;
@@ -15,37 +16,45 @@ public class PacienteController {
     private PacienteService pacienteService;
 
     @PostMapping("/createPaciente")
-    public Paciente savePaciente(@RequestBody Paciente paciente) {
-        return pacienteService.savePaciente(paciente);
+    public ResponseEntity<Paciente> savePaciente(@RequestBody Paciente paciente) {
+        return ResponseEntity.ok(pacienteService.savePaciente(paciente));
     }
 
     @DeleteMapping("/{id}")
-    public void deletePaciente(@PathVariable("id") Integer id) {
+    public void deletePaciente(@PathVariable("id") Long id) {
         pacienteService.deletePaciente(id);
     }
 
     @PutMapping
-    public Paciente updatePaciente(@RequestBody Paciente paciente) {
+    public ResponseEntity<Paciente> updatePaciente(@RequestBody Paciente paciente) {
         Optional<Paciente> paciente1 = pacienteService.getPacienteById(paciente.getId());
         if (paciente1.isEmpty()) {
-            throw new RuntimeException("Paciente no encontrado");
+            return ResponseEntity.notFound().build();
         }
-        return pacienteService.updatePaciente(paciente);
+        return ResponseEntity.ok(pacienteService.updatePaciente(paciente));
     }
 
-    @GetMapping("/{id}")
-    public Paciente getPacientePorId(@PathVariable("id") Integer id) {
-        return pacienteService.getPacienteById(id).get();
+    @GetMapping("/get/{id}")
+    public ResponseEntity<Paciente> getPacientePorId(@PathVariable("id") Long id) {
+        Optional<Paciente> paciente = pacienteService.getPacienteById(id);
+        if (paciente.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(paciente.get());
     }
 
-    @GetMapping("/{email}")
-    public Paciente getPacientePorEmail(@PathVariable("email") String email) {
-        return pacienteService.getPacienteByEmail(email).get();
+    @GetMapping("/get/{email}")
+    public ResponseEntity<Paciente> getPacientePorEmail(@PathVariable("email") String email) {
+        Optional<Paciente> paciente = pacienteService.getPacienteByEmail(email);
+        if (paciente.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(paciente.get());
     }
 
     @GetMapping
-    public List<Paciente> getPacientes() {
-        return pacienteService.getPacientes();
+    public ResponseEntity<List<Paciente>> getPacientes() {
+        return ResponseEntity.ok(pacienteService.getPacientes());
     }
 
 }

@@ -18,7 +18,7 @@ public class Paciente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     @Column
     private String nombre;
     @Column
@@ -32,7 +32,7 @@ public class Paciente {
     @JoinColumn(name = "domicilio_id", referencedColumnName = "id")
     @PrimaryKeyJoinColumn
     private Domicilio domicilio;
-    @Column(nullable = false)
+    @Column(nullable = false,unique = true)
     private String email;
 
 
