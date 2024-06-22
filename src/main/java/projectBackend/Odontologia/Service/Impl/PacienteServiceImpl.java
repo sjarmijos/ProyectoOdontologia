@@ -23,10 +23,6 @@ public class PacienteServiceImpl implements PacienteService {
         pacienteRepository.deleteById(id);
     }
 
-    public Paciente getPaciente(Long id) {
-        return pacienteRepository.findById(id).orElseThrow(() -> new RuntimeException("Paciente no encontrado"));
-    }
-
     public Optional<Paciente> getPacienteById(Long id) {
         return pacienteRepository.findById(id);
     }
