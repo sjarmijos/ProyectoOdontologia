@@ -11,7 +11,7 @@ window.addEventListener("load", function () {
         for (let odontologo of data) {
           var table = document.getElementById("odontologosTableBody"); // Asegúrate de que este ID exista en tu HTML
           var odontologoRow = table.insertRow();
-          let tr_id = odontologo.id;
+          let tr_id = 'tr_' + odontologo.id;
           odontologoRow.id = tr_id;
 
           const deleteButton = '<button' +
