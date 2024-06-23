@@ -3,7 +3,11 @@ package projectBackend.Odontologia.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import projectBackend.Odontologia.Entity.Odontologo;
+import projectBackend.Odontologia.Entity.Paciente;
 import projectBackend.Odontologia.Entity.Turno;
+import projectBackend.Odontologia.Service.OdontologoService;
+import projectBackend.Odontologia.Service.PacienteService;
 import projectBackend.Odontologia.Service.TurnoService;
 
 import java.util.List;
@@ -14,10 +18,23 @@ import java.util.Optional;
 public class TurnoController {
     @Autowired
     private TurnoService turnoService;
+    @Autowired
+    private PacienteService pacienteService;
+    @Autowired
+    private OdontologoService odontologoService;
 
     @PostMapping("/createTurno")
     public ResponseEntity<Turno> saveTurno(@RequestBody Turno turno) {
-        return ResponseEntity.ok(turnoService.saveTurno(turno));
+        Optional<Paciente> paciente = pacienteService.getPacienteById(turno.getPaciente().getId());
+        Optional<Odontologo> odontologo = odontologoService.getOdontologoById(turno.getOdontologo().getId());
+        if(paciente.isPresent() && odontologo.isPresent()) {
+            turno.setPaciente(paciente.get());
+            turno.setOdontologo(odontologo.get());
+            Turno turnoGuardado = turnoService.saveTurno(turno);
+            return ResponseEntity.ok(turnoGuardado);
+        }else{
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @DeleteMapping("/{id}")
