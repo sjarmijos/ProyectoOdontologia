@@ -2,7 +2,7 @@ window.addEventListener("load", function () {
   (function  () {
     const url = "/odontologo";
     const settings = {
-      method: "GET",
+      method: "GET"
     };
 
     fetch(url, settings)

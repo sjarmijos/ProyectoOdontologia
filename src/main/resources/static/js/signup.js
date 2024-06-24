@@ -1,16 +1,18 @@
 window.addEventListener('load', function () {
 
-    const formulario = document.querySelector('#add_new_odontologo');
+    const formulario = document.querySelector('#form_sign_up');
 
     formulario.addEventListener('submit', function (event) {
 
         const formData = {
             nombre: document.querySelector('#nombre').value,
-            apellido: document.querySelector('#apellido').value,
-            matricula: document.querySelector('#matricula').value,
+            username: document.querySelector('#username').value,
+            email: document.querySelector('#email').value,
+            password: document.querySelector('#password').value,
+            usuarioRole: document.querySelector('#role').value
         };
 
-        const url = '/odontologo/createOdontologo';
+        const url = '/usuarios/signup';
         const settings = {
             method: 'POST',
             headers: {
@@ -26,7 +28,7 @@ window.addEventListener('load', function () {
                  //se agrego bien
                  let successAlert = '<div class="alert alert-success alert-dismissible">' +
                      '<button type="button" class="close" data-dismiss="alert">&times;</button>' +
-                     '<strong></strong> Odontologo agregado </div>'
+                     '<strong></strong> Usuario agregado </div>'
 
                  document.querySelector('#response').innerHTML = successAlert;
                  document.querySelector('#response').style.display = "block";
@@ -48,16 +50,9 @@ window.addEventListener('load', function () {
 
     function resetUploadForm(){
         document.querySelector('#nombre').value = "";
-        document.querySelector('#apellido').value = "";
-        document.querySelector('#matricula').value = "";
+        document.querySelector('#username').value = "";
+        document.querySelector('#email').value = "";
+        document.querySelector('#password').value = "";
+        document.querySelector('#role').value = "";
     }
-
-    (function(){
-        let pathname = window.location.pathname;
-        if(pathname === "/"){
-            document.querySelector(".nav .nav-item a:first").addClass("active");
-        } else if (pathname == "./get_odontologos.html") {
-            document.querySelector(".nav .nav-item a:last").addClass("active");
-        }
-    })();
 });
