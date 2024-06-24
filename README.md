@@ -6,8 +6,8 @@ que maneja: odontólogos, pacientes y turnos. Así como un breve login utilizand
 
 ## Integrantes
 
-*Norlys Castañeda*
-*Santiago Armijos*
+* *Norlys Castañeda*
+* *Santiago Armijos*
 
 ## Tecnologías utilizadas
 
