@@ -48,4 +48,10 @@ window.addEventListener('load', function () {
         document.querySelector('#username').value = "";
         document.querySelector('#password').value = "";
     }
+
+    const signupButton = document.querySelector('#btn-signup');
+
+    signupButton.addEventListener('click', function() {
+        window.location.href = '../signup.html';  // Cambia esto a la URL correcta si es necesario
+    });
 });

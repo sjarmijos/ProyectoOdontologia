@@ -24,14 +24,6 @@ window.addEventListener('load', function () {
         fetch(url, settings)
             .then(response => response.json())
             .then(data => {
-                 //Si no hay ningun error se muestra un mensaje diciendo que la pelicula
-                 //se agrego bien
-                 let successAlert = '<div class="alert alert-success alert-dismissible">' +
-                     '<button type="button" class="close" data-dismiss="alert">&times;</button>' +
-                     '<strong></strong> Usuario agregado </div>'
-
-                 document.querySelector('#response').innerHTML = successAlert;
-                 document.querySelector('#response').style.display = "block";
                  resetUploadForm();
             })
             .catch(error => {
