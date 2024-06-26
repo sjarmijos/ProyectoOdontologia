@@ -31,6 +31,11 @@ public class OdontologoServiceImpl implements OdontologoService {
     }
 
     @Override
+    public Optional<Odontologo> getOdontologoByMatricula(String matricula) {
+        return odontologoRepository.findByMatricula(matricula);
+    }
+
+    @Override
     public Odontologo updateOdontologo(Odontologo odontologo) {
         return odontologoRepository.save(odontologo);
     }
