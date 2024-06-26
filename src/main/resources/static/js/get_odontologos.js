@@ -21,10 +21,11 @@ window.addEventListener("load", function () {
                                 '</button>';
 
           const updateButton = '<button' +
-                                ' id=' + '\"' + 'btn_id_' + odontologo.id + '\"' +
-                                ' type="button" onclick="findBy('+odontologo.id+')" class="btn btn-circle btn-success">' +
-                                '<i class="fas fa-pencil-alt"></i>' +
-                                '</button>';
+                              ' id=' + '\"' + 'btn_id_' + odontologo.id + '\"' +
+                              ' type="button" onclick="findBy('+odontologo.id+')" class="btn btn-circle btn-success">' +
+                              '<i class="fas fa-pencil-alt"></i>' +
+                              '</button>';
+
           odontologoRow.innerHTML =
             "<td>" + odontologo.id + "</td>" +
             '<td class="matricula">' + odontologo.matricula.toUpperCase() + "</td>" +
